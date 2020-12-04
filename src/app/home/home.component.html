@@ -1,0 +1,7 @@
+<div *ngIf="isLoggedIn; then browsePage else welcomePage"></div>
+<ng-template #welcomePage>
+    <app-welcome></app-welcome>
+</ng-template>
+<ng-template #browsePage>
+    <app-browse></app-browse>
+</ng-template>

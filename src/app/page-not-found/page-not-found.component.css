@@ -1,0 +1,19 @@
+#not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: url('https://wallpapercave.com/wp/wp6166192.jpg');
+    background-size: cover;
+}
+
+.error-template {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 20px 15px;
+    background: #fff;
+    margin-bottom: 150px;
+    border-radius: 5px;
+}

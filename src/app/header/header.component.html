@@ -18,7 +18,10 @@
             </ng-template>
             <ng-template #userNav>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Browser</a>
+                    <a routerLink="/" routerLinkActive="active" class="nav-link">Browse</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/create" routerLinkActive="active" class="nav-link">Create</a>
                 </li>
 
                 <li appDropdown class="nav-item dropdown ml-auto">

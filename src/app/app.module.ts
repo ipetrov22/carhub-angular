@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HomeComponent } from './home/home.component';
 import { BrowseComponent } from './browse/browse.component';
 import { DropdownDirective } from './header/dropdown.directive';
+import { CreateComponent } from './create/create.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DropdownDirective } from './header/dropdown.directive';
     PageNotFoundComponent,
     HomeComponent,
     BrowseComponent,
-    DropdownDirective
+    DropdownDirective,
+    CreateComponent
   ],
   imports: [
     BrowserModule,

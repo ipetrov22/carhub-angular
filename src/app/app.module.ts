@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { BrowseComponent } from './browse/browse.component';
+import { DropdownDirective } from './header/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BrowseComponent } from './browse/browse.component';
     RegisterComponent,
     PageNotFoundComponent,
     HomeComponent,
-    BrowseComponent
+    BrowseComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,

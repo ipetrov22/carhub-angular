@@ -7,44 +7,33 @@
     <!-- Navbar links -->
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav w-100">
+            <div *ngIf="isLoggedIn then userNav else guestNav"></div>
+            <ng-template #guestNav>
+                <li class="nav-item ml-auto" style="width: 70px">
+                    <a routerLink="/login" routerLinkActive="active" class="btn btn-primary">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/register" routerLinkActive="active" class="btn btn-secondary">Register</a>
+                </li>
+            </ng-template>
+            <ng-template #userNav>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Browser</a>
+                </li>
 
-            <li class="nav-item ml-auto" style="width: 70px">
-                <a routerLink="/login" routerLinkActive="active" class="btn btn-primary">Login</a>
-            </li>
-            <li class="nav-item">
-                <a routerLink="/register" routerLinkActive="active" class="btn btn-secondary">Register</a>
-            </li>
-            
+                <li appDropdown class="nav-item dropdown ml-auto">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">View Profile</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+            </ng-template>
         </ul>
     </div>
 </nav>
-
-
-<!-- <nav class="navbar sticky-top navbar-expand-md bg-dark navbar-dark">
-
-    <a class="navbar-brand" href="#">
-        CarHub
-    </a>
-
-
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav w-100">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Browser</a>
-            </li>
-
-            <li class="nav-item dropdown ml-auto">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Profile
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-</nav> -->

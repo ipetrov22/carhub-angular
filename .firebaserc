@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "carhub-d6711": {
+      "hosting": {
+        "carhub": [
+          "carhub-d6711"
+        ]
+      }
+    }
+  }
+}

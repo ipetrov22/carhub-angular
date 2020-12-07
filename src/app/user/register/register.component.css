@@ -1,49 +1,51 @@
-#login {
+#register {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  background: url('https://wallpapercave.com/wp/wp6166192.jpg');
+  background: url('https://www.wallpaperup.com/uploads/wallpapers/2018/01/06/1183815/9dbc82b10e770450afd4a054d26a004d.jpg');
   background-size: cover;
+  background-position: 100%;
 }
 
-.login-form {
+.register-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 30px 50px 30px;
   background: #fff;
-  margin-bottom: 150px;
+  margin-bottom: 10px;
+  transition: transform 0.5s;
   border-radius: 5px;
 }
 
-.login-form label {
+.register-form label {
   margin: 10px 0;
 }
 
-.login-form h1 {
-  margin-bottom: 30px;
+.register-form h1 {
   font-size: 40px;
   padding: 10px 50px;
 }
 
-#login form {
+#register form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-#login input[type="text"], #login input[type="password"] {
+#register input[type="text"], #register input[type="password"] #register input[type="email"] {
   font-size: 18px;
   padding: 11px 20px;
   outline: none;
-  border: none;
+  border-width: medium;
   background: rgb(230, 230, 230);
   border-radius: 5px;
+  width: 300px;
 }
 
-#login button {
+#register button {
   font-size: 18px;
   padding: 12px 10px;
   border: none;
@@ -52,7 +54,7 @@
   margin-top: 30px;
 }
 
-#login button:hover {
+#register button:hover {
   cursor: pointer;
 }
 

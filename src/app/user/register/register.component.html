@@ -1,0 +1,43 @@
+<section id="register">
+    <div class="color">
+        <div class="register-form">
+            <h1>Register</h1>
+            <form id="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit(f)">
+                <label for="email">Email</label>
+                <input class="form-control" type="email" name="email" [(ngModel)]="model.email" #email="ngModel"
+                    [ngClass]="{ 'is-invalid': email.touched && email.invalid, 'is-valid': email.touched && email.valid }"
+                    required email>
+
+                <div *ngIf="email.touched && email.invalid" class="invalid-feedback">
+                    Enter a valid email.
+                </div>
+
+
+                <label for="password">Password</label>
+                <input class="form-control" type="password" name="password" [(ngModel)]="model.password"
+                    #password="ngModel"
+                    [ngClass]="{ 'is-invalid': password.touched && password.invalid, 'is-valid': password.touched && password.valid }"
+                    required minlength="6">
+
+                <div *ngIf="password.touched && password.invalid" class="invalid-feedback">
+                    Password should be at least 6 characters long.
+                </div>
+
+
+                <label for="repeat-password">Repeat Password</label>
+                <input class="form-control" type="password" name="repeatPassword" [(ngModel)]="model.repeatPassword"
+                    #repeatPassword="ngModel" [ngClass]="{ 'is-invalid': repeatPassword.touched && (password.value !== repeatPassword.value), 
+                    'is-valid': repeatPassword.touched && repeatPassword.valid }" required>
+
+                <div *ngIf="repeatPassword.touched && (password.value !== repeatPassword.value)"
+                    class="invalid-feedback">
+                    Passwords should match.
+                </div>
+
+
+                <button>Register</button>
+                <a routerLink="/login" class="option">Already have an account?</a>
+            </form>
+        </div>
+    </div>
+</section>

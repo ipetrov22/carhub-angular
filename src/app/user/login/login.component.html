@@ -1,0 +1,28 @@
+<section id="login">
+    <div class="color">
+        <div class="login-form">
+            <h1>Login</h1>
+            <form id="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit(f)">
+                <label for="email">Email</label>
+                <input class="form-control" type="email" name="email" [(ngModel)]="model.email" #email="ngModel"
+                    [ngClass]="{ 'is-invalid': email.touched && email.invalid
+                }" required email>
+
+                <div *ngIf="email.touched && email.invalid" class="invalid-feedback">
+                    Enter a valid email.
+                </div>
+
+                <label for="password">Password</label>
+                <input class="form-control" type="password" name="password" [(ngModel)]="model.password"
+                    #password="ngModel" [ngClass]="{ 'is-invalid': password.touched && password.invalid }" required>
+
+                <div *ngIf="password.touched && password.invalid" class="invalid-feedback">
+                    Enter a password.
+                </div>
+
+                <button>Login</button>
+                <a routerLink="/register" class="option">Don't have an account?</a>
+            </form>
+        </div>
+    </div>
+</section>

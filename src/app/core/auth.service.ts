@@ -17,7 +17,6 @@ export class AuthService {
         localStorage.removeItem('isLoggedIn');
         this.isLoggedIn = false;
       }
-      console.log(this.isLoggedIn);
     })
     this.isLoggedIn = !!localStorage.getItem('isLoggedIn');
   }
@@ -44,7 +43,7 @@ export class AuthService {
   logout() {
     this.auth.signOut().then(() => {
       this.isLoggedIn = false;
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
     })
       .catch(error => {
         console.error(error);

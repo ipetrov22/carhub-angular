@@ -18,6 +18,8 @@ import { HomeComponent } from './home/home.component';
 import { BrowseComponent } from './browse/browse.component';
 import { DropdownDirective } from './core/header/dropdown.directive';
 import { CreateComponent } from './create/create.component';
+import { LoadingComponent } from './core/loading/loading.component';
+import { AlertComponent } from './core/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { CreateComponent } from './create/create.component';
     HomeComponent,
     BrowseComponent,
     DropdownDirective,
-    CreateComponent
+    CreateComponent,
+    LoadingComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HomeComponent } from './home/home.component';
 import { BrowseComponent } from './browse/browse.component';
 import { DropdownDirective } from './core/header/dropdown.directive';
-import { CreateComponent } from './create/create.component';
+import { CreateComponent } from './offer/create/create.component';
 import { LoadingComponent } from './core/loading/loading.component';
 import { AlertComponent } from './core/alert/alert.component';
 

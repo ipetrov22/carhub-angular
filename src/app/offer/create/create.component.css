@@ -38,16 +38,13 @@
     font-size: 18px;
     padding: 11px 20px;
     outline: none;
-    border: none;
     background: rgb(230, 230, 230);
     border-radius: 5px;
   }
 
   #create select {
     font-size: 18px;
-    padding: 11px 20px;
     outline: none;
-    border: none;
     background: rgb(230, 230, 230);
     border-radius: 5px;
   }
@@ -55,7 +52,6 @@
   #create textarea {
     font-size: 16px;
     outline: none;
-    border: none;
     background: rgb(230, 230, 230);
     border-radius: 5px;
   }

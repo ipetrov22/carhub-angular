@@ -1,0 +1,142 @@
+<section id="create">
+    <div class="color">
+        <div class="create-form">
+            <h1>Create Offer</h1>
+            <form id="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit(f)">
+                <label for="brandAndModel">Brand & Model</label>
+                <input class="form-control" type="text" name="brandAndModel" [(ngModel)]="model.brandAndModel"
+                    #brandAndModel="ngModel"
+                    [ngClass]="{ 'is-invalid': brandAndModel.touched && brandAndModel.invalid }" required>
+
+                <div *ngIf="brandAndModel.touched && brandAndModel.invalid" class="invalid-feedback">
+                    Enter the brand and model of the car.
+                </div>
+
+                <label for="image">Image</label>
+                <input class="form-control" type="file" name="image" accept="image/png, image/jpeg"
+                    (change)="onFileSelect($event)" [(ngModel)]="model.image" #image="ngModel"
+                    [ngClass]="{ 'is-invalid': image.touched && image.invalid }" required>
+
+                <div *ngIf="image.touched && image.invalid" class="invalid-feedback">
+                    Upload an image.
+                </div>
+
+                <label for="year">Year</label>
+                <input class="form-control" type="text" name="year" [(ngModel)]="model.year" #year="ngModel"
+                    [ngClass]="{ 'is-invalid': year.touched && year.invalid }" minlength="4" maxlength="4"
+                    pattern="^[0-9]+$" required>
+
+                <div *ngIf="year.touched && year.invalid" class="invalid-feedback">
+                    Enter the production year of the car.
+                </div>
+
+                <label for="body">Body Type</label>
+                <select class="form-control" name="body" [(ngModel)]="model.body" #body="ngModel"
+                    [ngClass]="{ 'is-invalid': body.touched && body.invalid }" required>
+
+                    <option value="" disabled selected>Select</option>
+                    <option value="sedan">Sedan</option>
+                    <option value="coupe">Coupe</option>
+                    <option value="hatchback">Hatchback</option>
+                    <option value="stationWagon">Station Wagon</option>
+                    <option value="convertible">Convertible</option>
+                    <option value="suv">SUV</option>
+                    <option value="pickup">Pickup</option>
+                    <option value="van">Van</option>
+                </select>
+
+                <div *ngIf="body.touched && body.invalid" class="invalid-feedback">
+                    Select the body type of the car.
+                </div>
+
+                <label for="price">Price in EUR</label>
+                <input class="form-control" type="text" name="price" [(ngModel)]="model.price" #price="ngModel"
+                    [ngClass]="{ 'is-invalid': price.touched && price.invalid }" pattern="^[0-9]+(.[0-9]+)?$" required>
+
+                <div *ngIf="price.touched && price.invalid" class="invalid-feedback">
+                    Enter the price of the car.
+                </div>
+
+                <label for="transmission">Transmission</label>
+                <select class="form-control" name="transmission" [(ngModel)]="model.transmission"
+                    #transmission="ngModel" [ngClass]="{ 'is-invalid': transmission.touched && transmission.invalid }"
+                    required>
+
+                    <option value="" disabled selected>Select</option>
+                    <option value="manual">Manual</option>
+                    <option value="automatic">Automatic</option>
+                </select>
+
+                <div *ngIf="transmission.touched && transmission.invalid" class="invalid-feedback">
+                    Select the transmission the car has.
+                </div>
+
+                <label for="fuel">Fuel Type</label>
+                <select class="form-control" name="fuel" [(ngModel)]="model.fuel" #fuel="ngModel"
+                    [ngClass]="{ 'is-invalid': fuel.touched && fuel.invalid }" required>
+
+                    <option value="" disabled selected>Select</option>
+                    <option value="gasoline">Gasoline</option>
+                    <option value="diesel">Diesel</option>
+                    <option value="compressedNaturalGas">Compressed Natural Gas</option>
+                    <option value="electric">Electric</option>
+                </select>
+
+                <div *ngIf="fuel.touched && fuel.invalid" class="invalid-feedback">
+                    Select the fuel the car uses.
+                </div>
+
+                <label for="horsepower">Horsepower</label>
+                <input class="form-control" type="text" name="horsepower" [(ngModel)]="model.horsepower"
+                    #horsepower="ngModel" [ngClass]="{ 'is-invalid': horsepower.touched && horsepower.invalid }"
+                    pattern="^[0-9]+$" required>
+
+                <div *ngIf="horsepower.touched && horsepower.invalid" class="invalid-feedback">
+                    Enter the horsepower of the car.
+                </div>
+
+                <label for="distanceTraveled">Distance Traveled in KM</label>
+                <input class="form-control" type="text" name="distanceTraveled" [(ngModel)]="model.distanceTraveled"
+                    #distanceTraveled="ngModel"
+                    [ngClass]="{ 'is-invalid': distanceTraveled.touched && distanceTraveled.invalid }"
+                    pattern="^[0-9]+(.[0-9]+)?$" required>
+
+                <div *ngIf="distanceTraveled.touched && distanceTraveled.invalid" class="invalid-feedback">
+                    Enter the distance traveled in KM.
+                </div>
+
+                <label for="doors">Door Number</label>
+                <select class="form-control" name="doors" [(ngModel)]="model.doors" #doors="ngModel"
+                    [ngClass]="{ 'is-invalid': doors.touched && doors.invalid }" required>
+
+                    <option value="" disabled selected>Select</option>
+                    <option value="2/3">2/3</option>
+                    <option value="4/5">4/5</option>
+                </select>
+
+                <div *ngIf="doors.touched && doors.invalid" class="invalid-feedback">
+                    Select the number of doors of the car.
+                </div>
+
+                <label for="location">Location</label>
+                <input class="form-control" type="text" name="location" [(ngModel)]="model.location" #location="ngModel"
+                    [ngClass]="{ 'is-invalid': location.touched && location.invalid }" required>
+
+                <div *ngIf="location.touched && location.invalid" class="invalid-feedback">
+                    Enter the location of the car.
+                </div>
+
+                <label for="description">Description</label>
+                <textarea class="form-control" name="description" [(ngModel)]="model.description" #description="ngModel"
+                    [ngClass]="{ 'is-invalid': description.touched && description.invalid }" minlength="20"
+                    maxlength="250" required></textarea>
+
+                <div *ngIf="description.touched && description.invalid" class="invalid-feedback">
+                    Description should be 20-250 characters long.
+                </div>
+
+                <button>Create Offer</button>
+            </form>
+        </div>
+    </div>
+</section>

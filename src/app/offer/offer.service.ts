@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import { AlertService } from '../core/alert.service';
 import { AuthService } from '../core/auth.service';
 import { LoadingService } from '../core/loading.service';
@@ -35,7 +35,7 @@ export class OfferService {
         const url = await fileRef.getDownloadURL().toPromise();
         offer.image = url;
 
-        this.db.collection('offers').add({ ...offer, creatorId: this.authService.uid ,createdAt: new Date().toDateString() })
+        this.db.collection('offers').add({ ...offer, creatorId: this.authService.uid, createdAt: new Date().toDateString() })
           .then(() => {
             this.loadingService.isLoading = false;
             this.router.navigate(['/']);
@@ -50,5 +50,28 @@ export class OfferService {
           });
       })
     ).subscribe();
+  }
+
+  getOffer(id: string | null) {
+    return this.db.collection('offers').doc(`${id}`).snapshotChanges().pipe(
+      map(x => {
+        const data = x.payload.data() as object;
+
+        this.loadingService.isLoading = false;
+
+        return { ...data, id };
+      })
+    );
+  }
+
+  getOffers(){
+    return this.db.collection('offers').snapshotChanges().pipe(
+      map(x => x.map(a => {
+        const data = a.payload.doc.data() as object;
+        const id = a.payload.doc.id;
+        this.loadingService.isLoading = false;
+        return { id, ...data };
+      }))
+    );
   }
 }

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LoadingService } from 'src/app/core/loading.service';
+import { OfferService } from '../offer.service';
 
 @Component({
   selector: 'app-details',
@@ -16,10 +17,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
   offer!: Observable<any>;
 
   constructor(
-    private db: AngularFirestore,
     private auth: AngularFireAuth,
     private loadingService: LoadingService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private offerService: OfferService
   ) { }
 
   ngOnInit(): void {
@@ -28,15 +29,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
     const id = this.route.snapshot.paramMap.get('id');
     this.sub = this.auth.user.subscribe((user) => {
       if (user) {
-        this.offer = this.db.collection('offers').doc(`${id}`).snapshotChanges().pipe(
-          map(x => {
-            const data = x.payload.data() as object;
-
-            this.loadingService.isLoading = false;
-            
-            return { ...data, id };
-          })
-        );
+        this.offer = this.offerService.getOffer(id);
       }
     });
   }

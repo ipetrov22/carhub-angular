@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LoadingService } from 'src/app/core/loading.service';
+import { OfferService } from 'src/app/offer/offer.service';
 
 @Component({
   selector: 'app-offer-list',
@@ -16,21 +17,15 @@ export class OfferListComponent implements OnInit, OnDestroy {
   constructor(
     private db: AngularFirestore,
     private auth: AngularFireAuth,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private offerService: OfferService
   ) { }
 
   ngOnInit(): void {
     this.loadingService.isLoading = true;
     this.sub = this.auth.user.subscribe((user) => {
       if (user) {
-        this.offers = this.db.collection('offers').snapshotChanges().pipe(
-          map(x => x.map(a => {
-            const data = a.payload.doc.data() as object;
-            const id = a.payload.doc.id;
-            this.loadingService.isLoading = false;
-            return { id, ...data };
-          }))
-        );
+        this.offers = this.offerService.getOffers();
       }
     });
   }

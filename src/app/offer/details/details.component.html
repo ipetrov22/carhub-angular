@@ -1,0 +1,60 @@
+<!-- Page Content -->
+<div class="container">
+    <!-- Portfolio Item Heading -->
+    <h1 class="my-4 text-center">{{(offer | async)?.brandAndModel}}</h1>
+
+    <!-- Portfolio Item Row -->
+    <div class="row">
+
+        <div class="col-md-8">
+            <img class="img-fluid" [src]="(offer | async)?.image"
+                alt="Car Image">
+        </div>
+
+        <div class="col-md-4">
+            <h3 class="my-3">Car Description</h3>
+            <p>{{(offer | async)?.description}}</p>
+            <h3 class="my-3">Car Details</h3>
+            <ul>
+                <li>Price: {{(offer | async)?.price}} EUR</li>
+                <li>Year: {{(offer | async)?.year}}</li>
+                <li>Body: {{(offer | async)?.body}}</li>
+                <li>Transmission: {{(offer | async)?.transmission}}</li>
+                <li>Fuel: {{(offer | async)?.fuel}}</li>
+                <li>Horsepower: {{(offer | async)?.Horsepower}} HP</li>
+                <li>Distance traveled: {{(offer | async)?.distanceTraveled}} KM</li>
+                <li>Doors: {{(offer | async)?.doors}}</li>
+            </ul>
+        </div>
+
+        <div class="col-md-8 text-right">
+            <a class="btn btn-success btn-lg" routerLink="/edit/{{(offer | async)?.id}}" style="margin-top: 5px">Edit</a>
+            <button class="btn btn-danger btn-lg" style="margin-left: 10px; margin-right: 15px; margin-top: 5px">Delete</button>
+        </div>
+    </div>
+    <hr>
+    <!-- /.row -->
+
+    <!-- Related Projects Row -->
+    <h2 class="my-4 text-center">Seller Info</h2>
+
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <h3>Phone:
+                <hr>
+                <a class="btn btn-info btn-lg" href="tel:{{(offer | async)?.phone}}">{{(offer | async)?.phone}}</a>
+            </h3>
+        </div>
+
+        <div class="col-md-6 text-center">
+            <h3>Location:
+                <hr>
+                <h4 class="btn btn-info btn-lg">{{(offer | async)?.location}}</h4>
+            </h3>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->

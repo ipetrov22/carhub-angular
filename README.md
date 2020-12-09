@@ -1,3 +1,9 @@
+# Project Description
+
+CarHub is an Angular project where after registration you can browse and create car sale offers.
+It uses Bootstrap4 for styling and AngularFire for back-end.
+Setup is below.
+
 # Carhub
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.

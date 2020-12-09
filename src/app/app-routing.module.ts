@@ -5,12 +5,14 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './user/login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './user/register/register.component';
+import { DetailsComponent } from './offer/details/details.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'create', component: CreateComponent },
+    { path: 'offer/details/:id', component: DetailsComponent },
     { path: '**', component: PageNotFoundComponent }
 ];
 

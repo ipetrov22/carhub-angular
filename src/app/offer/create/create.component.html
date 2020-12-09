@@ -35,14 +35,14 @@
                     [ngClass]="{ 'is-invalid': body.touched && body.invalid }" required>
 
                     <option value="" disabled selected>Select</option>
-                    <option value="sedan">Sedan</option>
-                    <option value="coupe">Coupe</option>
-                    <option value="hatchback">Hatchback</option>
-                    <option value="stationWagon">Station Wagon</option>
-                    <option value="convertible">Convertible</option>
-                    <option value="suv">SUV</option>
-                    <option value="pickup">Pickup</option>
-                    <option value="van">Van</option>
+                    <option value="Sedan">Sedan</option>
+                    <option value="Coupe">Coupe</option>
+                    <option value="Hatchback">Hatchback</option>
+                    <option value="Station Wagon">Station Wagon</option>
+                    <option value="Convertible">Convertible</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Pickup">Pickup</option>
+                    <option value="Van">Van</option>
                 </select>
 
                 <div *ngIf="body.touched && body.invalid" class="invalid-feedback">
@@ -63,8 +63,8 @@
                     required>
 
                     <option value="" disabled selected>Select</option>
-                    <option value="manual">Manual</option>
-                    <option value="automatic">Automatic</option>
+                    <option value="Manual">Manual</option>
+                    <option value="Automatic">Automatic</option>
                 </select>
 
                 <div *ngIf="transmission.touched && transmission.invalid" class="invalid-feedback">
@@ -76,10 +76,10 @@
                     [ngClass]="{ 'is-invalid': fuel.touched && fuel.invalid }" required>
 
                     <option value="" disabled selected>Select</option>
-                    <option value="gasoline">Gasoline</option>
-                    <option value="diesel">Diesel</option>
-                    <option value="compressedNaturalGas">Compressed Natural Gas</option>
-                    <option value="electric">Electric</option>
+                    <option value="Gasoline">Gasoline</option>
+                    <option value="Diesel">Diesel</option>
+                    <option value="Compressed Natural Gas">Compressed Natural Gas</option>
+                    <option value="Electric">Electric</option>
                 </select>
 
                 <div *ngIf="fuel.touched && fuel.invalid" class="invalid-feedback">

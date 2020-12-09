@@ -22,6 +22,7 @@ import { LoadingComponent } from './core/loading/loading.component';
 import { AlertComponent } from './core/alert/alert.component';
 import { OfferListComponent } from './home/browse/offer-list/offer-list.component';
 import { DetailsComponent } from './offer/details/details.component';
+import { EditComponent } from './offer/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DetailsComponent } from './offer/details/details.component';
     LoadingComponent,
     AlertComponent,
     OfferListComponent,
-    DetailsComponent
+    DetailsComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

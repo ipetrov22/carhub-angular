@@ -126,6 +126,14 @@
                     Enter the location of the car.
                 </div>
 
+                <label for="phone">Phone to Contact</label>
+                <input class="form-control" type="tel" name="phone" [(ngModel)]="model.phone" #phone="ngModel"
+                    [ngClass]="{ 'is-invalid': phone.touched && phone.invalid }" pattern="^[+]?[0-9]+$" required>
+
+                <div *ngIf="phone.touched && phone.invalid" class="invalid-feedback">
+                    Enter a phone number to contact.
+                </div>
+
                 <label for="description">Description</label>
                 <textarea class="form-control" name="description" [(ngModel)]="model.description" #description="ngModel"
                     [ngClass]="{ 'is-invalid': description.touched && description.invalid }" minlength="20"

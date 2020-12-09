@@ -9,6 +9,7 @@ import { LoadingService } from './loading.service';
 })
 export class AuthService {
   isLoggedIn: boolean;
+  uid: string = '';
 
   constructor(
     private auth: AngularFireAuth,
@@ -20,9 +21,11 @@ export class AuthService {
       if (user) {
         localStorage.setItem('isLoggedIn', 'true');
         this.isLoggedIn = true;
+        this.uid = user.uid;
       } else {
         localStorage.removeItem('isLoggedIn');
         this.isLoggedIn = false;
+        this.uid = 'false';
       }
     })
     this.isLoggedIn = !!localStorage.getItem('isLoggedIn');

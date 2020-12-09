@@ -1,86 +1,86 @@
 #create {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: url('https://www.wallpaperup.com/uploads/wallpapers/2018/01/06/1183815/9dbc82b10e770450afd4a054d26a004d.jpg');
-    background-size: cover;
-  }
-  
-  .create-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 50px 30px;
-    background: #fff;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    border-radius: 5px;
-  }
-  
-  .create-form label {
-    margin: 10px 0;
-  }
-  
-  .create-form h1 {
-    margin-bottom: 30px;
-    font-size: 40px;
-    padding: 10px 50px;
-  }
-  
-  #create form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  #create input[type="text"] {
-    font-size: 18px;
-    padding: 11px 20px;
-    outline: none;
-    background: rgb(230, 230, 230);
-    border-radius: 5px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('https://www.wallpaperup.com/uploads/wallpapers/2018/01/06/1183815/9dbc82b10e770450afd4a054d26a004d.jpg');
+  background-size: cover;
+}
 
-  #create select {
-    font-size: 18px;
-    outline: none;
-    background: rgb(230, 230, 230);
-    border-radius: 5px;
-  }
+.create-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 50px 30px;
+  background: #fff;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 5px;
+}
 
-  #create textarea {
-    font-size: 16px;
-    outline: none;
-    background: rgb(230, 230, 230);
-    border-radius: 5px;
-  }
-  
-  #create button {
-    font-size: 18px;
-    padding: 12px 10px;
-    border: none;
-    background: #007bff;
-    color: #fff;
-    margin-top: 30px;
-  }
-  
-  #create button:hover {
-    cursor: pointer;
-  }
-  
-  .option {
-    align-self: center;
-    margin-top: 30px;
-    text-decoration: none;
-    color: #636e72;
-  }
-  
-  .color {
-    height: 100%;
-    width: 100%;
-    background: #2121218a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.create-form label {
+  margin: 10px 0;
+}
+
+.create-form h1 {
+  margin-bottom: 30px;
+  font-size: 40px;
+  padding: 10px 50px;
+}
+
+#create form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#create input[type="text"], #create input[type="tel"] {
+  font-size: 18px;
+  padding: 11px 20px;
+  outline: none;
+  background: rgb(230, 230, 230);
+  border-radius: 5px;
+}
+
+#create select {
+  font-size: 18px;
+  outline: none;
+  background: rgb(230, 230, 230);
+  border-radius: 5px;
+}
+
+#create textarea {
+  font-size: 16px;
+  outline: none;
+  background: rgb(230, 230, 230);
+  border-radius: 5px;
+}
+
+#create button {
+  font-size: 18px;
+  padding: 12px 10px;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  margin-top: 30px;
+}
+
+#create button:hover {
+  cursor: pointer;
+}
+
+.option {
+  align-self: center;
+  margin-top: 30px;
+  text-decoration: none;
+  color: #636e72;
+}
+
+.color {
+  height: 100%;
+  width: 100%;
+  background: #2121218a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

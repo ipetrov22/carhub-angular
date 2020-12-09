@@ -1,0 +1,24 @@
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row">
+            <div *ngFor="let offer of offers | async" class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img [src]="offer.image" class="bd-placeholder-img card-img-top" width="100%" height="225">
+                    <div class="card-body">
+                        <h4>{{offer.brandAndModel}}</h4>
+                        <h5>{{offer.price}} EUR</h5>
+                        <p class="card-text">{{offer.description}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a [routerLink]="['offer/details/', offer.id]" type="button"
+                                    class="btn btn-sm btn-outline-secondary">View</a>
+                            </div>
+                            <small class="text-muted">{{offer.createdAt}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

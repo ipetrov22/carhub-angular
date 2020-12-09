@@ -10,16 +10,17 @@ import { environment } from 'src/environments/environment';
 
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
-import { WelcomeComponent } from './welcome/welcome.component';
+import { WelcomeComponent } from './home/welcome/welcome.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
-import { BrowseComponent } from './browse/browse.component';
+import { BrowseComponent } from './home/browse/browse.component';
 import { DropdownDirective } from './core/header/dropdown.directive';
 import { CreateComponent } from './offer/create/create.component';
 import { LoadingComponent } from './core/loading/loading.component';
 import { AlertComponent } from './core/alert/alert.component';
+import { OfferListComponent } from './home/browse/offer-list/offer-list.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AlertComponent } from './core/alert/alert.component';
     DropdownDirective,
     CreateComponent,
     LoadingComponent,
-    AlertComponent
+    AlertComponent,
+    OfferListComponent
   ],
   imports: [
     BrowserModule,

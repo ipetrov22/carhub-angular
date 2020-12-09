@@ -33,7 +33,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
             const data = x.payload.data() as object;
 
             this.loadingService.isLoading = false;
-            console.log(id);
+            
             return { ...data, id };
           })
         );

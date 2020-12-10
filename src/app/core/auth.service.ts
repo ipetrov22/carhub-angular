@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { AlertService } from './alert.service';
 import { LoadingService } from './loading.service';
@@ -15,7 +16,8 @@ export class AuthService {
     private auth: AngularFireAuth,
     private loadingService: LoadingService,
     private alertService: AlertService,
-    private router: Router
+    private router: Router,
+    private db: AngularFirestore
   ) {
     this.auth.user.subscribe(user => {
       if (user) {
@@ -30,6 +32,7 @@ export class AuthService {
     })
     this.isLoggedIn = !!localStorage.getItem('isLoggedIn');
   }
+
   login(email: string, password: string) {
     this.loadingService.isLoading = true;
 
@@ -53,7 +56,15 @@ export class AuthService {
     this.loadingService.isLoading = true;
 
     this.auth.createUserWithEmailAndPassword(email, password).then(user => {
+      const u: any = user;;
       this.isLoggedIn = true;
+      this.db.collection('users').doc(u.user.uid).set({
+        email,
+        favouriteOffers: [],
+        createdOffers: [],
+        registeredOn: new Date().toDateString()
+      });
+
       this.loadingService.isLoading = false;
       this.router.navigate(['/']);
 
@@ -62,7 +73,7 @@ export class AuthService {
     })
       .catch(error => {
         this.loadingService.isLoading = false;
-        
+
         this.alertService.alert.message = error.message;
         this.alertService.alert.style = 'alert-danger';
       });;
@@ -81,7 +92,7 @@ export class AuthService {
     })
       .catch(error => {
         this.loadingService.isLoading = false;
-        
+
         this.alertService.alert.message = error.message;
         this.alertService.alert.style = 'alert-danger';
       });

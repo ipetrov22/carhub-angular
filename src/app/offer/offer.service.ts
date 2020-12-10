@@ -102,6 +102,26 @@ export class OfferService {
 
   }
 
+  delete(id: string): void {
+    this.loadingService.isLoading = true;
+
+    const offerDoc = this.db.collection('offers').doc(id);
+    offerDoc.delete()
+      .then(res => {
+        this.loadingService.isLoading = false;
+        this.router.navigate(['/']);
+
+        this.alertService.alert.message = 'Offer deleted!';
+        this.alertService.alert.style = 'alert-success';
+      })
+      .catch(error => {
+        this.loadingService.isLoading = false;
+
+        this.alertService.alert.message = error.message;
+        this.alertService.alert.style = 'alert-danger';
+      });
+  }
+
   getOffer(id: string | null) {
     return this.db.collection('offers').doc(`${id}`).snapshotChanges().pipe(
       map(x => {

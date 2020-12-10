@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms'
 import { AngularFireAuth } from '@angular/fire/auth';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { LoadingService } from 'src/app/core/loading.service';
 import { OfferService } from '../offer.service';
+import { AuthService } from 'src/app/core/auth.service';
+import { AlertService } from 'src/app/core/alert.service';
 
 @Component({
   selector: 'app-edit',
@@ -25,7 +27,10 @@ export class EditComponent implements OnInit, OnDestroy {
     private auth: AngularFireAuth,
     private offerService: OfferService,
     private loadingService: LoadingService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService,
+    private alertService: AlertService
   ) { }
 
   onSubmit(f: NgForm): void {
@@ -54,6 +59,11 @@ export class EditComponent implements OnInit, OnDestroy {
       if (user) {
         this.offerSub = this.offerService.getOffer(id).subscribe(val => {
           this.offer = val;
+          if(this.offer.creatorId !== this.authService.uid){
+            this.router.navigate([`/offer/details/${this.offer.id}`]);
+
+            this.alertService.alert = {message: 'Access denied!', style: 'alert-danger'};
+          }
           this.f.setValue({
             brandAndModel: this.offer.brandAndModel,
             image: '',

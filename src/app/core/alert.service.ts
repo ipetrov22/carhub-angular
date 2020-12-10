@@ -4,6 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AlertService {
-  alert: {message: string, style: string} = { message: '', style: '' };
+  alert: { message: string, style: string } = { message: '', style: '' };
   constructor() { }
 }

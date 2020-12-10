@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { AlertService } from '../core/alert.service';
 import { AuthService } from '../core/auth.service';
@@ -52,6 +53,55 @@ export class OfferService {
     ).subscribe();
   }
 
+  edit(offer: any, id: string): void {
+    this.loadingService.isLoading = true;
+    if (typeof offer.image !== 'string') {
+      const file = offer.image[0];
+
+      const filePath = `${Math.pow(Math.random(), 10)}`
+      const fileRef = this.storage.ref(filePath);
+      const task = this.storage.upload(filePath, file);
+
+      task.snapshotChanges().pipe(
+        finalize(async () => {
+          const url = await fileRef.getDownloadURL().toPromise();
+          offer.image = url;
+
+          const offerDoc = this.db.collection('offers').doc(id);
+          offerDoc.update(offer)
+            .then(res => {
+              this.loadingService.isLoading = false;
+              this.router.navigate([`offer/details/${id}`]);
+
+              this.alertService.alert.message = 'Offer updated!';
+              this.alertService.alert.style = 'alert-success';
+            })
+            .catch(error => {
+              this.loadingService.isLoading = false;
+              this.alertService.alert.message = error.message;
+              this.alertService.alert.style = 'alert-danger';
+            });
+        })
+      ).subscribe();
+    } else {
+      const offerDoc = this.db.collection('offers').doc(id);
+      offerDoc.update(offer)
+        .then(res => {
+          this.loadingService.isLoading = false;
+          this.router.navigate([`offer/details/${id}`]);
+
+          this.alertService.alert.message = 'Offer updated!';
+          this.alertService.alert.style = 'alert-success';
+        })
+        .catch(error => {
+          this.loadingService.isLoading = false;
+          this.alertService.alert.message = error.message;
+          this.alertService.alert.style = 'alert-danger';
+        });
+    }
+
+  }
+
   getOffer(id: string | null) {
     return this.db.collection('offers').doc(`${id}`).snapshotChanges().pipe(
       map(x => {
@@ -64,7 +114,7 @@ export class OfferService {
     );
   }
 
-  getOffers(){
+  getOffers() {
     return this.db.collection('offers').snapshotChanges().pipe(
       map(x => x.map(a => {
         const data = a.payload.doc.data() as object;

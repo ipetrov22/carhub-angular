@@ -37,7 +37,10 @@ export class OfferService {
         offer.image = url;
 
         this.db.collection('offers').add({ ...offer, creatorId: this.authService.uid, createdAt: new Date().toDateString() })
-          .then(() => {
+          .then((offer) => {
+            const createdOffers = this.authService.user.createdOffers.concat([offer.id]);
+            this.db.collection('users').doc(this.authService.uid).update({ createdOffers });
+
             this.loadingService.isLoading = false;
             this.router.navigate(['/']);
 
@@ -108,6 +111,10 @@ export class OfferService {
     const offerDoc = this.db.collection('offers').doc(id);
     offerDoc.delete()
       .then(res => {
+        const createdOffers = this.authService.user.createdOffers;
+        createdOffers.splice(createdOffers.indexOf(id), 1);
+        this.db.collection('users').doc(this.authService.uid).update({ createdOffers });
+
         this.loadingService.isLoading = false;
         this.router.navigate(['/']);
 

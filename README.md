@@ -2,7 +2,10 @@
 
 CarHub is an Angular project where after registration you can browse and create car sale offers.
 It uses Bootstrap4 for styling and AngularFire for back-end.
-Setup is below.
+
+# Setup
+
+Run npm install and ng serve after that for a dev server. The app will run on `http://localhost:4200/`;
 
 # Carhub
 

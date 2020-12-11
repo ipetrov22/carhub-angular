@@ -16,6 +16,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   offerSub!: Subscription;
   offer: any = {};
   isCreator: boolean = false;
+  isFavorited: boolean = false;
 
   constructor(
     private auth: AngularFireAuth,
@@ -30,6 +31,16 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.offerService.delete(id);
   }
 
+  onFavorite(): void {
+    const id = this.offer.id;
+    this.loadingService.isLoading = true;
+    if (this.isFavorited) {
+      this.offerService.unFavorite(id, this.offer.favoritedBy);
+    } else {
+      this.offerService.favorite(id, this.offer.favoritedBy);
+    }
+  }
+
   ngOnInit(): void {
     this.loadingService.isLoading = true;
 
@@ -38,6 +49,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
       if (user) {
         this.offerSub = this.offerService.getOffer(id).subscribe((val) => {
           this.offer = val;
+          this.isFavorited = this.offer.favoritedBy.includes(this.authService.uid);
           this.isCreator = this.offer.creatorId === this.authService.uid;
         });
       }

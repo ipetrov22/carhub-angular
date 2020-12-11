@@ -36,11 +36,13 @@ export class OfferService {
         const url = await fileRef.getDownloadURL().toPromise();
         offer.image = url;
 
-        this.db.collection('offers').add({ ...offer, creatorId: this.authService.uid, createdAt: new Date().toDateString() })
+        this.db.collection('offers').add({
+          ...offer,
+          creatorId: this.authService.uid,
+          createdOn: new Date().toDateString(),
+          favoritedBy: []
+        })
           .then((offer) => {
-            const createdOffers = this.authService.user.createdOffers.concat([offer.id]);
-            this.db.collection('users').doc(this.authService.uid).update({ createdOffers });
-
             this.loadingService.isLoading = false;
             this.router.navigate(['/']);
 
@@ -111,15 +113,46 @@ export class OfferService {
     const offerDoc = this.db.collection('offers').doc(id);
     offerDoc.delete()
       .then(res => {
-        const createdOffers = this.authService.user.createdOffers;
-        createdOffers.splice(createdOffers.indexOf(id), 1);
-        this.db.collection('users').doc(this.authService.uid).update({ createdOffers });
-
         this.loadingService.isLoading = false;
         this.router.navigate(['/']);
 
         this.alertService.alert.message = 'Offer deleted!';
         this.alertService.alert.style = 'alert-success';
+      })
+      .catch(error => {
+        this.loadingService.isLoading = false;
+
+        this.alertService.alert.message = error.message;
+        this.alertService.alert.style = 'alert-warning';
+      });
+  }
+
+  favorite(id: string, currFavoritedBy: string[]) {
+    const favoritedBy = currFavoritedBy.concat([this.authService.uid]);
+    const offerDoc = this.db.collection('offers').doc(id);
+    offerDoc.update({ favoritedBy })
+      .then(res => {
+        this.loadingService.isLoading = false;
+
+        this.alertService.alert.message = 'Offer favorited!';
+        this.alertService.alert.style = 'alert-success';
+      })
+      .catch(error => {
+        this.loadingService.isLoading = false;
+        this.alertService.alert.message = error.message;
+        this.alertService.alert.style = 'alert-danger';
+      });
+  }
+
+  unFavorite(id: string, favoritedBy: string[]) {
+    favoritedBy.splice(favoritedBy.indexOf(this.authService.uid), 1);
+    const offerDoc = this.db.collection('offers').doc(id);
+    offerDoc.update({ favoritedBy })
+      .then(res => {
+        this.loadingService.isLoading = false;
+
+        this.alertService.alert.message = 'Offer removed from favorites!';
+        this.alertService.alert.style = 'alert-warning';
       })
       .catch(error => {
         this.loadingService.isLoading = false;

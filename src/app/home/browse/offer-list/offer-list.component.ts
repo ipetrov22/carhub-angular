@@ -29,5 +29,6 @@ export class OfferListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
+    this.loadingService.isLoading = false;
   }
 }

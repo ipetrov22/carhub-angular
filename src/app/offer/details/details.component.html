@@ -7,8 +7,7 @@
     <div class="row">
 
         <div class="col-md-8">
-            <img class="img-fluid" [src]="offer.image"
-                alt="Car Image">
+            <img class="img-fluid" [src]="offer.image" alt="Car Image">
         </div>
 
         <div class="col-md-4">
@@ -27,10 +26,23 @@
             </ul>
         </div>
 
-        <div *ngIf="isCreator" class="col-md-8 text-right">
-            <a class="btn btn-success btn-lg" routerLink="/offer/edit/{{offer.id}}" style="margin-top: 5px">Edit</a>
-            <button (click)="onDelete()" class="btn btn-danger btn-lg" style="margin-left: 10px; margin-right: 15px; margin-top: 5px">Delete</button>
-        </div>
+        <div *ngIf="isCreator then creatorPanel else clientPanel"></div>
+
+        <ng-template #creatorPanel>
+            <div class="col-md-8 text-right">
+                <a class="btn btn-success btn-lg" routerLink="/offer/edit/{{offer.id}}" style="margin-top: 5px">Edit</a>
+                <button (click)="onDelete()" class="btn btn-danger btn-lg"
+                    style="margin-left: 10px; margin-right: 15px; margin-top: 5px">Delete</button>
+            </div>
+        </ng-template>
+
+        <ng-template #clientPanel>
+            <div class="col-md-8 text-right">
+                <button (click)="onFavorite()" [ngClass]="isFavorited ? 'btn-success' : 'btn-outline-success'"
+                    class="btn btn-lg" style="margin-left: 10px; margin-right: 15px; margin-top: 5px">Favorite</button>
+            </div>
+        </ng-template>
+
     </div>
     <hr>
     <!-- /.row -->

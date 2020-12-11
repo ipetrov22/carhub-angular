@@ -13,8 +13,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor(
     public authService: AuthService,
-    private offerService: OfferService,
-    private loadingService: LoadingService
+    private offerService: OfferService
   ) { }
 
   ngOnInit(): void {

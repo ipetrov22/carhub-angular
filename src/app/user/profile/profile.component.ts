@@ -18,7 +18,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.loadingService.isLoading = true;
     this.createdOffers = this.offerService.getUserOffers(this.authService.uid);
   }
 

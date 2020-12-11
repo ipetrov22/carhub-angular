@@ -159,7 +159,6 @@ export class OfferService {
       map(x => x.map(a => {
         const data = a.payload.doc.data() as object;
         const id = a.payload.doc.id;
-        this.loadingService.isLoading = false;
         return { id, ...data };
       }))
     );

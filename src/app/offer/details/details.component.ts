@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/auth.service';
 import { LoadingService } from 'src/app/core/loading.service';
 import { OfferService } from '../offer.service';
@@ -49,7 +49,13 @@ export class DetailsComponent implements OnInit, OnDestroy {
       if (user) {
         this.offerSub = this.offerService.getOffer(id).subscribe((val) => {
           this.offer = val;
-          this.isFavorited = this.offer.favoritedBy.includes(this.authService.uid);
+
+          try {
+            this.isFavorited = this.offer.favoritedBy.includes(this.authService.uid);
+          } catch (error) {
+            this.isFavorited = false;
+          }
+          
           this.isCreator = this.offer.creatorId === this.authService.uid;
         });
       }

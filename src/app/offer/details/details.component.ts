@@ -28,7 +28,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   onDelete(): void {
     const id = this.offer.id;
-    this.offerService.delete(id);
+    this.offerService.delete(id, this.offer.image);
   }
 
   onFavorite(): void {

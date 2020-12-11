@@ -107,12 +107,13 @@ export class OfferService {
 
   }
 
-  delete(id: string): void {
+  delete(id: string, imageUrl: string): void {
     this.loadingService.isLoading = true;
 
     const offerDoc = this.db.collection('offers').doc(id);
     offerDoc.delete()
-      .then(res => {
+      .then(() => {
+        this.storage.refFromURL(imageUrl).delete().toPromise().catch(console.error);
         this.loadingService.isLoading = false;
         this.router.navigate(['/']);
 

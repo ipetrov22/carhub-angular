@@ -41,7 +41,7 @@ const routes: Routes = [
         ...canActivate(redirectUnauthorizedToLogin)
     },
     {
-        path: 'profile/:id',
+        path: 'profile',
         component: ProfileComponent,
         ...canActivate(redirectUnauthorizedToLogin)
     },

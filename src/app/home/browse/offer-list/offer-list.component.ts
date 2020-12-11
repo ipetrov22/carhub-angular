@@ -19,7 +19,6 @@ export class OfferListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.loadingService.isLoading = true;
     this.sub = this.auth.user.subscribe((user) => {
       if (user) {
         this.offers = this.offerService.getOffers();

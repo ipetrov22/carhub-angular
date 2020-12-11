@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/auth.service';
-import { LoadingService } from 'src/app/core/loading.service';
 import { OfferService } from 'src/app/offer/offer.service';
 
 @Component({
@@ -9,7 +9,10 @@ import { OfferService } from 'src/app/offer/offer.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  createdOffers: any;
+  createdOffers!: Observable<any>;
+  favoriteOffers!: Observable<any>;
+  offers!: Observable<any>;
+  showsCreated: boolean = true;
 
   constructor(
     public authService: AuthService,
@@ -17,7 +20,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.createdOffers = this.offerService.getUserOffers(this.authService.uid);
+    this.createdOffers = this.offerService.getCreatedOffers(this.authService.uid);
+    this.favoriteOffers = this.offerService.getFavoriteOffers(this.authService.uid);
+    this.offers = this.createdOffers;
+  }
+
+  showFavorite(): void {
+    this.offers = this.favoriteOffers;
+    this.showsCreated = false;
+  }
+
+  showCreated(): void {
+    this.offers = this.createdOffers;
+    this.showsCreated = true;
   }
 
   ngOnDestroy(): void {

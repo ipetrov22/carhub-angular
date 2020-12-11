@@ -4,19 +4,31 @@
         <div class="container">
             <h1 class="jumbotron-heading"><strong>Profile Page</strong></h1>
             <h2 class="jumbotron-heading"><strong>Email: </strong>{{authService.email}}</h2>
-            <p class="lead text-muted">Here you can see the offers you've created and those you've marked as favourite.</p>
+            <p class="lead text-muted">Here you can see the offers you've created and those you've marked as favorite.
+            </p>
             <p>
-                <a href="#" class="btn btn-primary my-2">Main call to action</a>
-                <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+                <button (click)="showCreated()" [ngClass]="showsCreated ? 'btn-primary' : 'btn-secondary'"
+                    class="btn btn-lg my-2" style="margin-right: 5px;">Created</button>
+                <button (click)="showFavorite()" [ngClass]="!showsCreated ? 'btn-primary' : 'btn-secondary'"
+                    class="btn btn-lg my-2">Favorite</button>
             </p>
         </div>
     </section>
+
+    <div *ngIf="showsCreated then createdTitle else favoriteTitle"></div>
+    <ng-template #createdTitle>
+        <h1 class="text-center"><strong>Created Offers</strong></h1>
+    </ng-template>
+
+    <ng-template #favoriteTitle>
+        <h1 class="text-center"><strong>Favorite Offers</strong></h1>
+    </ng-template>
 
     <div class="album py-5 bg-light">
         <div class="container">
 
             <div class="row">
-                <div *ngFor="let offer of createdOffers | async" class="col-md-4">
+                <div *ngFor="let offer of offers | async" class="col-md-4">
                     <div class="card mb-4 shadow-sm">
                         <img [src]="offer.image" class="bd-placeholder-img card-img-top" width="100%" height="225">
                         <div class="card-body">

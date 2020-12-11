@@ -23,6 +23,7 @@ import { AlertComponent } from './core/alert/alert.component';
 import { OfferListComponent } from './home/browse/offer-list/offer-list.component';
 import { DetailsComponent } from './offer/details/details.component';
 import { EditComponent } from './offer/edit/edit.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { EditComponent } from './offer/edit/edit.component';
     AlertComponent,
     OfferListComponent,
     DetailsComponent,
-    EditComponent
+    EditComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

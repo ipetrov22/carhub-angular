@@ -20,6 +20,11 @@ export class HeaderComponent implements OnInit {
   get alert(): boolean {
     return !!this.alertService.alert.message;
   }
+
+  get uid(): string {
+    return this.authService.uid;
+  }
+
   constructor(
     private authService: AuthService,
     private loadingService: LoadingService,

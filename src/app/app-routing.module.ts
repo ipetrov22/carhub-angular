@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { RegisterComponent } from './user/register/register.component';
 import { DetailsComponent } from './offer/details/details.component';
 import { EditComponent } from './offer/edit/edit.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
@@ -37,6 +38,11 @@ const routes: Routes = [
     {
         path: 'offer/edit/:id',
         component: EditComponent,
+        ...canActivate(redirectUnauthorizedToLogin)
+    },
+    {
+        path: 'profile/:id',
+        component: ProfileComponent,
         ...canActivate(redirectUnauthorizedToLogin)
     },
     { path: '**', component: PageNotFoundComponent }

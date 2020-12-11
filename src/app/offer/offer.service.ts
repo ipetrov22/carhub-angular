@@ -151,4 +151,17 @@ export class OfferService {
       }))
     );
   }
+
+  getUserOffers(id: string) {
+    return this.db.collection('offers', (ref) => {
+      return ref.where('creatorId', '==', id);
+    }).snapshotChanges().pipe(
+      map(x => x.map(a => {
+        const data = a.payload.doc.data() as object;
+        const id = a.payload.doc.id;
+        this.loadingService.isLoading = false;
+        return { id, ...data };
+      }))
+    );
+  }
 }

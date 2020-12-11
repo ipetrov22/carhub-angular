@@ -30,7 +30,7 @@
                         Profile
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">View Profile</a>
+                        <a routerLink="/profile/{{uid}}" class="dropdown-item">View Profile</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" type="button" (click)="onLogout()">Logout</a>
                     </div>

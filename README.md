@@ -4,6 +4,10 @@ CarHub is an Angular project where after registration you can browse and create 
 All form fields are validated. Every user can access their profile page and see the offers they've created and those they've marked as favorite.
 The app uses Bootstrap4 for styling and Firebase as back-end. Images are saved in the FireStorage.
 
+# Hosting
+
+The app has been deployed at https://carhub-d6711.web.app/
+
 # Setup
 
 Run npm install and ng serve after that for a dev server. The app will run on `http://localhost:4200/`;
